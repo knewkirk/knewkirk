@@ -1,0 +1,27 @@
+{
+  "name": "knewkirk",
+  "version": "0.0.1",
+  "description": "Kyle Newkirk's personal site",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/knewkirk/knewkirk.git"
+  },
+  "keywords": [
+    "threejs",
+    "react",
+    "3d",
+    "react-three-fiber",
+    "three",
+    "fiber"
+  ],
+  "author": "Kyle Newkirk <kylednewkirk@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/knewkirk/knewkirk/issues"
+  },
+  "homepage": "https://github.com/knewkirk/knewkirk#readme"
+}
