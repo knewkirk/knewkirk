@@ -16,7 +16,7 @@ export default () => {
 
   return (
     <>
-      <Canvas dpr={[1, 2]}>
+      <Canvas>
         <OrbitControls />
         <Suspense fallback={null}>
           <mesh>
