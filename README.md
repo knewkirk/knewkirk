@@ -1,16 +1,16 @@
 # Personal Site
 
-[knewkirk.com](knewkirk.com)
+[knewkirk.com](https://knewkirk.com)
 
 A little bit about me, written using `react-three-fiber`. Includes past projects and resume.
 
 In the market for work! Preferably fulltime. 10 years of web (mostly frontend) experience at major companies, 3 months of `three.js` experience.
 
 ### Recent highlights include:
-#### [alaflow.com](alaflow.com)
+#### [alaflow.com](https://alaflow.com)
 A marketing site I built for my brother's musical duo, built with `react-three-fiber`. Check 'em out, they're good!
 
-#### [kyle-fe.st](kyle-fe.st)
+#### [kyle-fe.st](https://kyle-fe.st)
 A shameless flyer/invite for my bday party. Every event needs a little hype. First attempt at using `three.js` (before jumping into `react-three-fiber`)
 
 ---
