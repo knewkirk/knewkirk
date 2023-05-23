@@ -9,7 +9,7 @@
     "watch": "webpack --watch",
     "serve": "firebase serve --only hosting",
     "preview": "firebase hosting:channel:deploy a",
-    "deploy": "npm build-prod && firebase deploy --only hosting",
+    "deploy": "npm run build-prod && firebase deploy --only hosting",
     "analyze": "webpack --analyze"
   },
   "repository": {
@@ -31,8 +31,10 @@
   },
   "homepage": "https://github.com/knewkirk/knewkirk#readme",
   "dependencies": {
+    "@react-three/csg": "^2.2.0",
     "@react-three/drei": "^9.66.6",
     "@react-three/fiber": "^8.13.0",
+    "@react-three/postprocessing": "^2.11.4",
     "leva": "^0.9.34",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
