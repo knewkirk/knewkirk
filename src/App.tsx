@@ -35,8 +35,8 @@ export default () => {
         color1: { value: '#ffedd2' },
         intensity1: { value: 1.6, min: 0, max: 2 },
         color2: { value: '#ffedd2' },
-        intensity2: { value: 15, min: 0, max: 20 },
-        lightX: { value: -5, min: -10, max: 10 },
+        intensity2: { value: 10, min: 0, max: 20 },
+        lightX: { value: -15, min: -100, max: 10 },
         lightY: { value: 0, min: -2, max: 5 },
         lightZ: { value: -4, min: -10, max: 5 },
       },
@@ -109,7 +109,6 @@ export default () => {
               focusDistance={focusDistance}
               bokehScale={bokehScale}
             />
-            <Bloom luminanceThreshold={0.8} />
           </EffectComposer>
         </Suspense>
       </Canvas>

@@ -13,7 +13,7 @@ export default () => {
   const { x, y, z, width, opacity, color } = useControls(
     'cloud',
     {
-      x: { value: 30, min: -100, max: 100 },
+      x: { value: 10, min: -100, max: 100 },
       y: { value: 120, min: 0, max: 200 },
       z: { value: -300, min: -500, max: 50 },
       width: { value: 110, min: 0, max: 200 },

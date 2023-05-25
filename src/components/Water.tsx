@@ -15,7 +15,7 @@ export default () => {
   const { sunX, sunY, sunZ, sunColor, distortionScale, speed } = useControls(
     'water',
     {
-      sunX: { value: -40, min: -100, max: 100 },
+      sunX: { value: -80, min: -200, max: 0 },
       sunY: { value: -30, min: -100, max: 10 },
       sunZ: { value: -250, min: -1000, max: 500 },
       sunColor: { value: '#fcc78a' },

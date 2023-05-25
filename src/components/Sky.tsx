@@ -13,7 +13,7 @@ export default () => {
       mieDirectionalG: { value: 0.994, min: 0.99, max: 1 },
       rayleigh: { value: 2, min: 0, max: 5 },
       turbidity: { value: 2.5, min: 0, max: 5 },
-      x: { value: -80, min: -100, max: 0 },
+      x: { value: -100, min: -500, max: 0 },
       y: { value: -0.5, min: -10, max: 0 },
       z: { value: -300, min: -1000, max: 10 },
     },

@@ -113,7 +113,7 @@ export default ({ position, onClick, onMissed }: Props) => {
         displacementScale={0.01}
         ref={ref}
       />
-      <Float enabled={false}>
+      <group rotation={[0, Math.PI / 10, 0]}>
         <Center
           scale={scale}
           position={position}
@@ -140,8 +140,6 @@ export default ({ position, onClick, onMissed }: Props) => {
             </Text3D>
           </mesh>
         </Center>
-      </Float>
-      <Float enabled={false}>
         <Center
           scale={scale * scaleSm}
           position={[position[0], position[1] - 1.8, position[2]]}
@@ -163,8 +161,6 @@ export default ({ position, onClick, onMissed }: Props) => {
             </Text3D>
           </mesh>
         </Center>
-      </Float>
-      <Float enabled={false}>
         <Center
           scale={scale * scaleSm}
           position={[position[0], position[1] - 2.3, position[2]]}
@@ -182,8 +178,6 @@ export default ({ position, onClick, onMissed }: Props) => {
             </Text3D>
           </mesh>
         </Center>
-      </Float>
-      <Float enabled={false}>
         <Center
           scale={scale * scaleSm}
           position={[position[0], position[1] - 3.0, position[2]]}
@@ -201,7 +195,7 @@ export default ({ position, onClick, onMissed }: Props) => {
             </Text3D>
           </mesh>
         </Center>
-      </Float>
+      </group>
     </>
   );
 };
