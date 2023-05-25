@@ -82,8 +82,10 @@ export default () => {
         />
         <OrbitControls
           target={[0, textY + orbYOff, textZ]}
-          maxPolarAngle={Math.PI / 2}
           minPolarAngle={Math.PI / 6}
+          maxPolarAngle={Math.PI / 2}
+          minAzimuthAngle={-Math.PI / 2}
+          maxAzimuthAngle={Math.PI / 2}
         />
         <Suspense fallback={null}>
           <hemisphereLight
@@ -99,8 +101,9 @@ export default () => {
           <primitive object={target} />
           <Headline
             position={[0, textY, textZ]}
-            onClick={() => setAboutShowing(true)}
-            onMissed={() => setAboutShowing(false)}
+            rotation={[0, Math.PI / 12, 0]}
+            onAboutClick={() => setAboutShowing(true)}
+            onAboutMissed={() => setAboutShowing(false)}
           />
           <About shouldShow={aboutShowing} />
           <EffectComposer multisampling={0}>

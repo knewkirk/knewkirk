@@ -1,13 +1,8 @@
-import React, {
-  useCallback,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from 'react';
-import { Center, Float, Text3D, useTexture } from '@react-three/drei';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
+import { Center, Text3D, useTexture } from '@react-three/drei';
 import { useControls } from 'leva';
 import * as THREE from 'three';
+import Logo, { IconType } from './Logo';
 
 const FONTS = [
   'fonts/Bungee_Regular.json',
@@ -33,11 +28,12 @@ const FONTS = [
 
 interface Props {
   position?: THREE.Vector3Tuple;
-  onClick(): void;
-  onMissed(): void;
+  rotation?: THREE.Vector3Tuple;
+  onAboutClick(): void;
+  onAboutMissed(): void;
 }
 
-export default ({ position, onClick, onMissed }: Props) => {
+export default ({ position, rotation, onAboutClick, onAboutMissed }: Props) => {
   const [aoMap, map, displacementMap, metalnessMap, normalMap, roughnessMap] =
     useTexture(
       [
@@ -57,9 +53,45 @@ export default ({ position, onClick, onMissed }: Props) => {
       }
     );
 
-  const { scale, scaleSm, ...fontProps } = useControls(
+  const {
+    spacing,
+    liScale,
+    liDepth,
+    liOffset,
+    ghScale,
+    ghDepth,
+    eScale,
+    eDepth,
+  } = useControls(
+    'logospacing',
+    {
+      spacing: { value: 0.75, min: 0, max: 2 },
+      eScale: { value: 0.0012, min: 0.0001, max: 0.0015 },
+      eDepth: { value: 80, min: 20, max: 100 },
+      liScale: { value: 0.001, min: 0.0001, max: 0.002 },
+      liDepth: { value: 80, min: 20, max: 100 },
+      liOffset: { value: 0.05, min: 0.01, max: 0.1 },
+      ghScale: { value: 0.0053, min: 0.001, max: 0.009 },
+      ghDepth: { value: 10, min: 5, max: 20 },
+    },
+    { collapsed: true }
+  );
+
+  const {
+    scale,
+    scaleSm,
+    linksOffset,
+    linksPadding,
+    specularIntensity,
+    roughness,
+    ...fontProps
+  } = useControls(
     'text',
     {
+      specularIntensity: { value: 0.02, min: 0, max: 0.1 },
+      roughness: { value: 0.8, min: 0, max: 1 },
+      linksOffset: { value: 1.7, min: 0, max: 3 },
+      linksPadding: { value: 0.5, min: 0, max: 1 },
       font: { value: 'fonts/Sigmar One_Regular.json', options: FONTS },
       size: { value: 2.2, min: 0, max: 5 },
       scale: { value: 0.25, min: 0, max: 0.5 },
@@ -78,10 +110,19 @@ export default ({ position, onClick, onMissed }: Props) => {
 
   const ref = useRef();
   const [material, setMaterial] = useState();
-  // useEffect(() => setMaterial(ref.current), Object.keys(props) as any);
+
   useEffect(
     () => setMaterial(ref.current),
-    [aoMap, map, displacementMap, metalnessMap, normalMap, roughnessMap]
+    [
+      aoMap,
+      map,
+      displacementMap,
+      metalnessMap,
+      normalMap,
+      roughnessMap,
+      specularIntensity,
+      roughness,
+    ]
   );
 
   const onPointerEnter = useCallback(() => {
@@ -94,26 +135,20 @@ export default ({ position, onClick, onMissed }: Props) => {
   const onResumeClick = useCallback(() => {
     window.open('resume-may2023.pdf', 'blank');
   }, []);
-  const onContactClick = useCallback(() => {
-    location.href = 'mailto:kylednewkirk@gmail.com';
-  }, []);
 
   return (
     <>
-      {/* <MeshTransmissionMaterial
-        {...(props as any)}
-        ref={ref}
-      /> */}
       <meshPhysicalMaterial
         aoMap={aoMap}
         map={map}
         displacementMap={displacementMap}
         normalMap={normalMap}
-        roughnessMap={roughnessMap}
         displacementScale={0.01}
+        specularIntensity={specularIntensity}
+        roughness={roughness}
         ref={ref}
       />
-      <group rotation={[0, Math.PI / 10, 0]}>
+      <group rotation={rotation}>
         <Center
           scale={scale}
           position={position}
@@ -129,7 +164,7 @@ export default ({ position, onClick, onMissed }: Props) => {
         </Center>
         <Center
           scale={scale}
-          position={[position[0], position[1] - 0.8, position[2]]}
+          position={[position[0], position[1] - 0.7, position[2]]}
         >
           <mesh>
             <Text3D
@@ -142,14 +177,14 @@ export default ({ position, onClick, onMissed }: Props) => {
         </Center>
         <Center
           scale={scale * scaleSm}
-          position={[position[0], position[1] - 1.8, position[2]]}
+          position={[position[0], position[1] - linksOffset, position[2]]}
         >
           <mesh
             onClick={(e) => {
-              onClick();
+              onAboutClick();
               e.stopPropagation();
             }}
-            onPointerMissed={onMissed}
+            onPointerMissed={onAboutMissed}
             onPointerEnter={onPointerEnter}
             onPointerLeave={onPointerLeave}
           >
@@ -163,7 +198,11 @@ export default ({ position, onClick, onMissed }: Props) => {
         </Center>
         <Center
           scale={scale * scaleSm}
-          position={[position[0], position[1] - 2.3, position[2]]}
+          position={[
+            position[0],
+            position[1] - (linksOffset + 0.5),
+            position[2],
+          ]}
         >
           <mesh
             onClick={onResumeClick}
@@ -178,23 +217,48 @@ export default ({ position, onClick, onMissed }: Props) => {
             </Text3D>
           </mesh>
         </Center>
-        <Center
-          scale={scale * scaleSm}
-          position={[position[0], position[1] - 3.0, position[2]]}
-        >
-          <mesh
-            onClick={onContactClick}
-            onPointerEnter={onPointerEnter}
-            onPointerLeave={onPointerLeave}
-          >
-            <Text3D
-              material={material}
-              {...fontProps}
-            >
-              Contact
-            </Text3D>
-          </mesh>
-        </Center>
+        <Logo
+          type={IconType.Email}
+          scale={eScale}
+          material={material}
+          position={[
+            position[0] - spacing,
+            position[1] - (linksOffset + 1.3),
+            position[2],
+          ]}
+          bevelThickness={eDepth}
+          bevelSize={5}
+          onPointerEnter={onPointerEnter}
+          onPointerLeave={onPointerLeave}
+        />
+        <Logo
+          type={IconType.LinkedIn}
+          scale={liScale}
+          material={material}
+          position={[
+            position[0] + liOffset,
+            position[1] - (linksOffset + 1.3),
+            position[2],
+          ]}
+          bevelThickness={liDepth}
+          bevelSize={5}
+          onPointerEnter={onPointerEnter}
+          onPointerLeave={onPointerLeave}
+        />
+        <Logo
+          type={IconType.GitHub}
+          scale={ghScale}
+          material={material}
+          position={[
+            position[0] + spacing,
+            position[1] - (linksOffset + 1.3),
+            position[2],
+          ]}
+          bevelThickness={ghDepth}
+          bevelSize={2}
+          onPointerEnter={onPointerEnter}
+          onPointerLeave={onPointerLeave}
+        />
       </group>
     </>
   );
