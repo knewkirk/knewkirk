@@ -5,6 +5,7 @@ import {
   Stats,
   Loader,
   PerspectiveCamera,
+  Html,
 } from '@react-three/drei';
 import { Canvas } from '@react-three/fiber';
 import { Leva, useControls } from 'leva';
@@ -73,21 +74,30 @@ export default () => {
   return (
     <>
       <Canvas dpr={[1, 2]}>
-        <Sky />
-        <Clouds />
-        <Water />
-        <PerspectiveCamera
-          makeDefault
-          position={[0, orbY, orbZ]}
-        />
-        <OrbitControls
-          target={[0, textY + orbYOff, textZ]}
-          minPolarAngle={Math.PI / 6}
-          maxPolarAngle={Math.PI / 2}
-          minAzimuthAngle={-Math.PI / 2}
-          maxAzimuthAngle={Math.PI / 2}
-        />
-        <Suspense fallback={null}>
+        <Suspense
+          fallback={
+            <Html>
+              <div className="loading-bg">
+                <p className="sun-icon">🌞</p>
+              </div>
+            </Html>
+          }
+        >
+          <Sky />
+          <Clouds />
+          <Water />
+          <PerspectiveCamera
+            makeDefault
+            position={[0, orbY, orbZ]}
+          />
+          <OrbitControls
+            target={[0, textY + orbYOff, textZ]}
+            minPolarAngle={Math.PI / 6}
+            maxPolarAngle={Math.PI / 2 + 0.15}
+            minAzimuthAngle={-Math.PI / 2}
+            maxAzimuthAngle={Math.PI / 2}
+          />
+
           <hemisphereLight
             color={color1}
             intensity={intensity1}
@@ -117,7 +127,7 @@ export default () => {
       </Canvas>
       <Leva hidden={PRODUCTION && !devMode} />
       {(!PRODUCTION || devMode) && <Stats />}
-      <Loader />
+      {/* <Loader /> */}
     </>
   );
 };

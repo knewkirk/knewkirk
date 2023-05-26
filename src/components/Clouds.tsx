@@ -1,6 +1,7 @@
 import { useTexture } from '@react-three/drei';
+import { useFrame } from '@react-three/fiber';
 import { useControls } from 'leva';
-import React, { useEffect } from 'react';
+import React, { useRef } from 'react';
 import * as THREE from 'three';
 
 export default () => {
@@ -10,10 +11,11 @@ export default () => {
     texture.repeat.set(1, 1);
   });
 
-  const { x, y, z, width, opacity, color } = useControls(
+  const { speed, x, y, z, width, opacity, color } = useControls(
     'cloud',
     {
-      x: { value: 10, min: -100, max: 100 },
+      speed: { value: 1.5, min: 0, max: 10 },
+      x: { value: 50, min: -100, max: 100 },
       y: { value: 120, min: 0, max: 200 },
       z: { value: -300, min: -500, max: 50 },
       width: { value: 110, min: 0, max: 200 },
@@ -23,8 +25,20 @@ export default () => {
     { collapsed: true }
   );
 
+  const meshRef = useRef<THREE.Mesh>();
+
+  useFrame((state, delta) => {
+    if (!meshRef.current) {
+      return;
+    }
+    meshRef.current.position.x -= delta * speed;
+  });
+
   return (
-    <mesh position={[x, y, z]}>
+    <mesh
+      position={[x, y, z]}
+      ref={meshRef}
+    >
       <planeGeometry args={[2.342 * width, width]} />
       <meshPhysicalMaterial
         color={color}

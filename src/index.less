@@ -2,22 +2,49 @@
   box-sizing: border-box;
 }
 
-html, body, #root {
+html,
+body,
+#root {
+  padding: 0;
   margin: 0;
   height: 100%;
   width: 100%;
+  background: #dff2ff;
 }
 
 body.pointer {
   cursor: pointer;
 }
 
-.wrapper {
-  border: 1px dashed magenta;
-  max-width: 200px;
-
-  p {
-    font-size: 14px;
-  }
-
+.loading-bg {
+  width: 50%;
+  height: 100%;
+  display: block;
+  background: #dff2ff;
+  position: absolute;
+  z-index: 1000;
 }
+
+@keyframes spin {
+  0% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.sun-icon {
+  position: absolute;
+  font-size: 64px;
+  top: 0;
+  bottom: 0;
+  left: calc(50% - 32px);
+  right: 0;
+  margin: auto;
+  width: fit-content;
+  height: fit-content;
+  animation: 2s spin ease 0s infinite;
+}
+
+
