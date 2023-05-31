@@ -5,7 +5,7 @@ import React, { useRef } from 'react';
 import * as THREE from 'three';
 
 export default () => {
-  const texture = useTexture('cloud.png', (texture: THREE.Texture) => {
+  const texture = useTexture('textures/cloud.png', (texture: THREE.Texture) => {
     texture.wrapS = THREE.RepeatWrapping;
     texture.wrapT = THREE.RepeatWrapping;
     texture.repeat.set(1, 1);

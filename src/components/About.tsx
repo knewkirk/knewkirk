@@ -23,11 +23,11 @@ const FONTS = [
 const ABOUT_BODY = `
 Hi there! \
 My name is Kyle Newkirk, currently \
-living in San Francisco. I've been a (mostly frontend) engineer \
+living in San Francisco. I've been a frontend-leaning engineer \
 for the past 10 years.`;
 
 const UNEMPLOYMENT_BODY = `
-Most recently, I was a Senior Frontend Engineer at Reddit 04/17 - 02/22, \
+Most recently, I was a Senior Frontend Engineer at Reddit (04/17 - 02/22), \
 on Core Product and then a founding member of the Design Systems Team, \
 before quitting due to injuries. \
 During my time off, aside from healing, I've been learning lots: \

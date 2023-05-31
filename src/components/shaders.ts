@@ -100,10 +100,8 @@ float cnoise(vec3 P) {
 void main() {
   vUv = uv;
 
-  // vDisplacement = cnoise(position + vec3(2.0 * u_time));
   vDisplacement = cnoise(position + vec3(u_time * 0.5));
 
-  // vec3 newPosition = position + normal * (u_intensity * vDisplacement);
   float newZ = position.z + normal.z * (u_intensity * vDisplacement);
   vec3 newPosition = vec3(position.x, position.y, newZ);
 
@@ -128,7 +126,6 @@ varying float vDisplacement;
 void main() {
   vec3 color = mix(u_colorA, u_colorB, vDisplacement * 1.0);
 
-  // gl_FragColor = vec4(color ,1.0);
   gl_FragColor = vec4(color ,u_opacity);
 }
 

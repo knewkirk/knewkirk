@@ -37,12 +37,12 @@ export default ({ position, rotation, onAboutClick, onAboutMissed }: Props) => {
   const [aoMap, map, displacementMap, metalnessMap, normalMap, roughnessMap] =
     useTexture(
       [
-        'wood/WoodFloor043_1K_AmbientOcclusion.jpg',
-        'wood/WoodFloor043_1K_Color.jpg',
-        'wood/WoodFloor043_1K_Displacement.jpg',
-        'wood/WoodFloor043_1K_Metalness.jpg',
-        'wood/WoodFloor043_1K_Normal.jpg',
-        'wood/WoodFloor043_1K_Roughness.jpg',
+        'textures/wood/WoodFloor043_1K_AmbientOcclusion.jpg',
+        'textures/wood/WoodFloor043_1K_Color.jpg',
+        'textures/wood/WoodFloor043_1K_Displacement.jpg',
+        'textures/wood/WoodFloor043_1K_Metalness.jpg',
+        'textures/wood/WoodFloor043_1K_Normal.jpg',
+        'textures/wood/WoodFloor043_1K_Roughness.jpg',
       ],
       (texture: THREE.Texture[]) => {
         texture.forEach((t) => {
@@ -126,14 +126,13 @@ export default ({ position, rotation, onAboutClick, onAboutMissed }: Props) => {
   );
 
   const onPointerEnter = useCallback(() => {
-    console.log('e');
     document.body.classList.add('pointer');
   }, []);
   const onPointerLeave = useCallback(() => {
     document.body.classList.remove('pointer');
   }, []);
   const onResumeClick = useCallback(() => {
-    window.open('resume-may2023.pdf', 'blank');
+    window.open('newkirk-resume.pdf', 'blank');
   }, []);
 
   return (

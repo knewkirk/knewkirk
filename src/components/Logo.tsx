@@ -58,7 +58,7 @@ export default ({
     depth: { value: 1, min: 0, max: 50 },
     offX: { value: 1.2, min: 0, max: 2 },
     offY: { value: 0.9, min: 0, max: 2 },
-  });
+  }, { collapsed: true });
 
   useEffect(() => {
     if (!material) {

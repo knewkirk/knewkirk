@@ -8,7 +8,7 @@ extend({ Water });
 
 export default () => {
   const ref = useRef();
-  const waterNormals = useLoader(THREE.TextureLoader, '/waternormals.jpeg');
+  const waterNormals = useLoader(THREE.TextureLoader, 'textures/waternormals.jpeg');
   waterNormals.wrapS = waterNormals.wrapT = THREE.RepeatWrapping;
 
   const {
@@ -51,6 +51,7 @@ export default () => {
     [waterNormals, sunX, sunY, sunZ, sunColor, distortionScale, textureScale]
   );
   const waterObj = useMemo(() => new Water(geom, config), [geom, config]);
+
   useFrame((state, delta) => {
     if (!ref.current) {
       return;

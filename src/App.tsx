@@ -3,7 +3,6 @@ import * as THREE from 'three';
 import {
   OrbitControls,
   Stats,
-  Loader,
   PerspectiveCamera,
   Html,
 } from '@react-three/drei';
@@ -16,11 +15,7 @@ import Sky from '@components/Sky';
 import Clouds from '@components/Clouds';
 import About from '@components/About';
 import Water from '@components/Water';
-import {
-  Bloom,
-  DepthOfField,
-  EffectComposer,
-} from '@react-three/postprocessing';
+import { DepthOfField, EffectComposer } from '@react-three/postprocessing';
 
 export default () => {
   let devMode = false;
@@ -59,9 +54,9 @@ export default () => {
   } = useControls(
     'focus',
     {
-      focusDistance: { value: 0, min: -5, max: 5 }, // where to focus
-      focalLength: { value: 0.08, min: 0, max: 0.1 }, // focal length
-      bokehScale: { value: 4, min: 0, max: 20 }, // bokeh size
+      focusDistance: { value: 0, min: -5, max: 5 },
+      focalLength: { value: 0.08, min: 0, max: 0.1 },
+      bokehScale: { value: 4, min: 0, max: 20 },
       textY: { value: 3.5, min: 0, max: 10 },
       textZ: { value: 0, min: -5, max: 5 },
       orbY: { value: 1.5, min: 0, max: 10 },
@@ -127,7 +122,6 @@ export default () => {
       </Canvas>
       <Leva hidden={PRODUCTION && !devMode} />
       {(!PRODUCTION || devMode) && <Stats />}
-      {/* <Loader /> */}
     </>
   );
 };
