@@ -2,9 +2,9 @@
 
 [knewkirk.com](https://knewkirk.com)
 
-A little bit about me, written using `react-three-fiber`. Includes past projects and resume.
+A little bit about me, written using `react-three-fiber`.
 
-In the market for work! Preferably fulltime. 10 years of web (mostly frontend) experience at major companies, 3 months of `three.js` experience.
+In the market for work, preferably fulltime. 10 years of mostly frontend web experience at major companies, 3 months of `three.js` experience.
 
 ### Recent highlights include:
 #### [alaflow.com](https://alaflow.com)
@@ -26,7 +26,3 @@ A shameless flyer/invite for my bday party. Every event needs a little hype. Fir
 _and_
 
 `npm run serve`
-
-
-## Deployment
-Open up a PR against the `main` branch and we'll talk about it :-)
